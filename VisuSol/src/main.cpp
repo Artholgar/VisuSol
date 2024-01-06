@@ -26,7 +26,7 @@ int main() {
     if (!initWindow(&window)) {
         return -1;
     }
-    
+
     /* Intialize glad (loads the OpenGL functions) */
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         return -1;
