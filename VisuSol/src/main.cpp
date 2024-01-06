@@ -2,7 +2,7 @@
 #include "include/AppEngine.hpp"
 #include "glimac/Sphere.hpp"
 #include <glimac/FilePath.hpp>
-
+#include <glimac/Image.hpp>
 #include <GLFW/glfw3.h>
 #include <glimac/Program.hpp>
 
@@ -10,6 +10,9 @@
 #include <iostream>
 
 int main(int argc, char* argv[]) {
+    std::unique_ptr<glimac::Image> pSoleil;
+
+    pSoleil = glimac::loadImage("C:\\Users\\Paul\\Documents\\openGLroot\\VisuSol\\assets\\models\\textures\\sunmap.jpg");
     /* Initialize the library */
     if (!glfwInit()) {
         return -1;
@@ -48,7 +51,16 @@ int main(int argc, char* argv[]) {
     glm::mat4 ProjMatrix(1);
     glm::mat4 MVMatrix(1);
     glm::mat4 NormalMatrix(1);
+    GLint uTexture = glGetUniformLocation(pId, "uTexture");
+    GLuint sunTextId;
+    glGenTextures(1, &sunTextId);
 
+    glBindTexture(GL_TEXTURE_2D, sunTextId);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pSoleil->getWidth(), pSoleil->getHeight(), 0, GL_RGBA, GL_FLOAT, pSoleil->getPixels());
+
+    glUniform1i(uTexture, 0);
     GLuint vbo, vao;
 
     glimac::Sphere sphere(1, 32, 16);
@@ -71,6 +83,7 @@ int main(int argc, char* argv[]) {
         glUniformMatrix4fv(uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix));
         glUniformMatrix4fv(uMVMatrix, 1, GL_FALSE, glm::value_ptr(MVMatrix));
         glUniformMatrix4fv(uNormalMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix));
+        glBindTexture(GL_TEXTURE_2D, sunTextId);
         glDrawArrays(GL_TRIANGLES, 0, sphere.getVertexCount());
 
         /* Swap front and back buffers */
