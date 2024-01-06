@@ -9,7 +9,6 @@ class Camera {
 public:
     virtual glm::mat4 getViewMatrix() const
     {
-        std::cout << "Base class default behaviour\n";
         return glm::mat4(1);
     }
 };
