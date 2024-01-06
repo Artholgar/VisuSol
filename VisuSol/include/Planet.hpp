@@ -29,7 +29,6 @@ public:
         initVBO(&_vbo, _vertexCount, _dataPointer);
 
         initVAO(&_vao, _vbo);
-        vTex.generateTexture();
 
     }
 
