@@ -13,7 +13,7 @@ class Orbit;
 
 class Planet : public Drawable {
 public:
-    Planet(const glimac::Sphere &sphere, glm::f32 rotate_angle, glm::vec3 rotate_axis, glm::vec3 translate, glm::vec3 scale)
+    Planet(glimac::Sphere sphere, glm::f32 rotate_angle, glm::vec3 rotate_axis, glm::vec3 translate, glm::vec3 scale)
         : _program(glimac::FilePath("./VisuSol/")) 
         , _rotate_angle(rotate_angle)
         , _rotate_axis(rotate_axis)

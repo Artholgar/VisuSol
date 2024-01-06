@@ -15,15 +15,15 @@ double cursorPosY;
 
 glimac::TrackBallCamera cam;
 
-static int getWindowWidth() {
+int getWindowWidth() {
     return window_width;
 }
 
-static int getWindowHeight() {
+int getWindowHeight() {
     return window_height;
 }
 
-static glimac::Camera getCam() {
+glimac::Camera getCam() {
     return cam;
 }
 

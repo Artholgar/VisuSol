@@ -8,7 +8,9 @@
 
 class SolarSystem {
 public:
-    SolarSystem(const glimac::Sphere &sphere) : _star(sphere, 0, glm::vec3(1), glm::vec3(0), glm::vec3(1)) {
+    SolarSystem(glimac::Sphere sphere) 
+    : _star(sphere, 0, glm::vec3(1), glm::vec3(0), glm::vec3(1)) 
+    {
     }
 
     const void drawAll();

@@ -3,7 +3,6 @@
 #include "glimac/Camera.hpp"
 
 #include "AppEngine.hpp"
-#include "SolarSystem.hpp"
 
 void initVBO(GLuint* vbo, const GLsizei vertexCount, const glimac::ShapeVertex* dataPointer);
 

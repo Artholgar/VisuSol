@@ -1,10 +1,10 @@
-#include "include/GraphicEngine.hpp"
-
 #include "glimac/Sphere.hpp"
-
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include <iostream>
+
+#include "include/SolarSystem.hpp"
 
 int main(int argc, char** argv) {
     /* Initialize the library */
@@ -32,13 +32,7 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    GLuint vbo, vao;
-
     glimac::Sphere sphere(1, 32, 16);
-
-    initVBO(&vbo, sphere.getVertexCount(), sphere.getDataPointer());
-
-    initVAO(&vao, vbo);
 
     SolarSystem ss(sphere);
 
@@ -54,8 +48,6 @@ int main(int argc, char** argv) {
         glfwPollEvents();
     }
 
-    glDeleteVertexArrays(1, &vao);
-    glDeleteBuffers(1, &vbo);
     glfwTerminate();
 
     return 0;

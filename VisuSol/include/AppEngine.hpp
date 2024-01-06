@@ -4,11 +4,9 @@
 #include "glimac/FreeflyCamera.hpp"
 #include "glimac/TrackBallCamera.hpp"
 
-#include "SolarSystem.hpp"
+int getWindowWidth();
+int getWindowHeight();
 
-static int getWindowWidth();
-static int getWindowHeight();
-
-static glimac::Camera getCam();
+glimac::Camera getCam();
 
 int initWindow(GLFWwindow** window);
