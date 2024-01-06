@@ -16,6 +16,7 @@ int main(int argc, char** argv) {
         return -1;
     }
 
+
     /* Create a window and its OpenGL context */
 #ifdef __APPLE__
     /* We need to explicitly ask for a 3.3 context on Mac */
@@ -35,13 +36,12 @@ int main(int argc, char** argv) {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         return -1;
     }
-
+    glEnable(GL_DEPTH_TEST);
     glimac::Sphere sphere(1, 32, 16);
 
     SolarSystem ss(sphere);
     float cpt = 1.f;
     while (!glfwWindowShouldClose(window)) {
-        glClearColor(0.75f, 0.f, 0.75f, 1.f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         ss.drawAll();
