@@ -7,5 +7,5 @@ in vec2 vTextureCoord;
 out vec4 fColor;
 
 void main() {
-    fColor = vec4(255, 255, 255, 255);
+    fColor = vec4(125, 125, 125, 255);
 }
