@@ -1,5 +1,4 @@
 #pragma once
-#include <glad/glad.h>
 #include "glimac/common.hpp"
 #include "glimac/Camera.hpp"
 

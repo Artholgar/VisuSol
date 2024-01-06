@@ -6,7 +6,7 @@
 #include <glad/glad.h>
 #include <iostream>
 
-int main() {
+int main(int argc, char** argv) {
     /* Initialize the library */
     if (!glfwInit()) {
         return -1;
@@ -43,10 +43,10 @@ int main() {
     SolarSystem ss(sphere);
 
     while (!glfwWindowShouldClose(window)) {
-
-        const auto planet = ss.getStar();
-
-        planet.draw();
+        glClearColor(0.75f, 0.f, 0.75f, 1.f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        ss.drawAll();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
@@ -54,6 +54,8 @@ int main() {
         glfwPollEvents();
     }
 
+    glDeleteVertexArrays(1, &vao);
+    glDeleteBuffers(1, &vbo);
     glfwTerminate();
 
     return 0;

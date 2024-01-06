@@ -24,10 +24,3 @@ void initVAO(GLuint* vao_ptr, GLuint vbo) {
     glVertexArrayAttribBinding(*vao_ptr, 1, 0);
     glVertexArrayAttribBinding(*vao_ptr, 2, 0);
 }
-
-void drawSolarSystem(SolarSystem ss, glimac::Camera cam) 
-{
-    auto star = ss.getStar();
-
-    star.draw();
-}

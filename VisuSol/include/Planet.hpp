@@ -1,8 +1,10 @@
 #pragma once
 #include "Drawable.hpp"
 #include "Orbit.hpp"
+#include "GraphicEngine.hpp"
+#include "Programs.hpp"
+#include "AppEngine.hpp"
 
-#include <glad/glad.h>
 #include "glimac/common.hpp"
 #include "glimac/Sphere.hpp"
 #include <vector>
@@ -11,18 +13,35 @@ class Orbit;
 
 class Planet : public Drawable {
 public:
-    Planet(const glimac::Sphere &sphere) {
+    Planet(const glimac::Sphere &sphere, glm::f32 rotate_angle, glm::vec3 rotate_axis, glm::vec3 translate, glm::vec3 scale)
+        : _program(glimac::FilePath("./VisuSol/")) 
+        , _rotate_angle(rotate_angle)
+        , _rotate_axis(rotate_axis)
+        , _translate(translate)
+        , _scale(scale)
+    {
         _dataPointer = sphere.getDataPointer();
         _vertexCount = sphere.getVertexCount();
-        _model = glm::mat4(1);
         _orbites = std::vector<Orbit>();
+
+        initVBO(&_vbo, _vertexCount, _dataPointer);
+
+        initVAO(&_vao, _vbo);
+
     }
 
-    void draw() const override;
+    void draw(glimac::Camera cam, glm::mat4 model) const override;
 
 private:
     const glimac::ShapeVertex* _dataPointer;
-    GLsizei              _vertexCount;
-    glm::mat4            _model;
+    GLsizei                    _vertexCount;
+    GLuint               _vbo;
+    GLuint               _vao;
+    PlanetProgram        _program;
+    glm::f32             _rotate_angle;
+    glm::vec3            _rotate_axis;
+    glm::vec3            _translate;
+    glm::vec3            _scale;
     std::vector<Orbit>   _orbites;
+
 };

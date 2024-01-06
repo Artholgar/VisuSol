@@ -15,6 +15,18 @@ double cursorPosY;
 
 glimac::TrackBallCamera cam;
 
+static int getWindowWidth() {
+    return window_width;
+}
+
+static int getWindowHeight() {
+    return window_height;
+}
+
+static glimac::Camera getCam() {
+    return cam;
+}
+
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     /*if (key == GLFW_KEY_UP) {

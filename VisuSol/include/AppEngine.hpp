@@ -6,4 +6,9 @@
 
 #include "SolarSystem.hpp"
 
+static int getWindowWidth();
+static int getWindowHeight();
+
+static glimac::Camera getCam();
+
 int initWindow(GLFWwindow** window);

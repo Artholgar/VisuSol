@@ -1,5 +1,6 @@
 #pragma once
 #include "Planet.hpp"
+#include "AppEngine.hpp"
 
 #include "glimac/common.hpp"
 #include "glimac/Sphere.hpp"
@@ -7,11 +8,10 @@
 
 class SolarSystem {
 public:
-    SolarSystem(const glimac::Sphere &sphere) : _star(sphere) {
-        //_star = Planet(sphere);
+    SolarSystem(const glimac::Sphere &sphere) : _star(sphere, 0, glm::vec3(1), glm::vec3(0), glm::vec3(1)) {
     }
 
-    Planet getStar() { return _star; }
+    const void drawAll();
 
 private:
     Planet _star;
