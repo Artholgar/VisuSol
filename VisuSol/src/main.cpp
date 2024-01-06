@@ -40,11 +40,13 @@ int main() {
 
     initVAO(&vao, vbo);
 
-    SolarSystem ss();
+    SolarSystem ss(sphere);
 
     while (!glfwWindowShouldClose(window)) {
 
+        const auto planet = ss.getStar();
 
+        planet.draw();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
