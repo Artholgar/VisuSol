@@ -1,5 +1,6 @@
 #version 330
 
+uniform sampler2D uTexture;
 in vec3 vPosition;
 in vec3 vNormal;
 in vec2 vTextureCoord;
@@ -7,5 +8,5 @@ in vec2 vTextureCoord;
 out vec4 fColor;
 
 void main() {
-    fColor = vec4(125, 125, 125, 255);
+    fColor = texture(uTexture, vTextureCoord);
 }

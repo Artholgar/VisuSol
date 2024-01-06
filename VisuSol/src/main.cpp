@@ -1,12 +1,16 @@
+
 #include "glimac/Sphere.hpp"
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
+#include <glimac/Program.hpp>
+
 #include <glad/glad.h>
 #include <iostream>
 
 #include "include/SolarSystem.hpp"
 
 int main(int argc, char** argv) {
+
     /* Initialize the library */
     if (!glfwInit()) {
         return -1;
@@ -26,7 +30,7 @@ int main(int argc, char** argv) {
     if (!initWindow(&window)) {
         return -1;
     }
-    
+
     /* Intialize glad (loads the OpenGL functions) */
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         return -1;
@@ -35,7 +39,7 @@ int main(int argc, char** argv) {
     glimac::Sphere sphere(1, 32, 16);
 
     SolarSystem ss(sphere);
-
+    float cpt = 1.f;
     while (!glfwWindowShouldClose(window)) {
         glClearColor(0.75f, 0.f, 0.75f, 1.f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -46,6 +50,7 @@ int main(int argc, char** argv) {
         glfwSwapBuffers(window);
         /* Poll for and process events */
         glfwPollEvents();
+        cpt += 0.1f;
     }
 
     glfwTerminate();
