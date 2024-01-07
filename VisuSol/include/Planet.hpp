@@ -32,7 +32,7 @@ public:
 
     }
 
-    void draw(glimac::Camera cam, glm::mat4 model) const override;
+    void draw(glimac::FreeflyCamera cam, glm::mat4 model) const override;
 
 private:
     const glimac::ShapeVertex* _dataPointer;

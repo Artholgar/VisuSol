@@ -9,4 +9,6 @@ int getWindowHeight();
 
 glimac::FreeflyCamera getCam();
 
+void updateCam();
+
 int initWindow(GLFWwindow** window);

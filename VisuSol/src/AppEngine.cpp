@@ -126,6 +126,13 @@ static void size_callback(GLFWwindow* window, int width, int height)
     window_height = height;
 }
 
+void updateCam() {
+    cam.rotateLeft(rotateLeft);
+    cam.rotateUp(rotateUp);
+    cam.moveFront(moveFront);
+    cam.moveLeft(moveLeft);
+}
+
 int initWindow(GLFWwindow** window) {
 
     *window = glfwCreateWindow(window_width, window_height, "VisuSol", nullptr, nullptr);

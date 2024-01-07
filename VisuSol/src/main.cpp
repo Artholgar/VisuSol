@@ -40,17 +40,17 @@ int main(int argc, char** argv) {
     glimac::Sphere sphere(1, 32, 16);
 
     SolarSystem ss(sphere);
-    float cpt = 1.f;
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         ss.drawAll();
 
+        updateCam();
+
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
         /* Poll for and process events */
         glfwPollEvents();
-        cpt += 0.1f;
     }
 
     glfwTerminate();

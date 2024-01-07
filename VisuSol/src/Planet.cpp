@@ -3,7 +3,7 @@
 
 
 float cpt = 0.f;
-void Planet::draw(glimac::Camera cam, glm::mat4 model) const {
+void Planet::draw(glimac::FreeflyCamera cam, glm::mat4 model) const {
     auto sunModel = model;
     ////GLint uTexture = glGetUniformLocation(_program.m_Program.getGLId(), "uTexture");
     //GLuint texPlanete;
