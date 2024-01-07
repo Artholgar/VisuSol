@@ -5,17 +5,6 @@
 float cpt = 0.f;
 void Planet::draw(glimac::FreeflyCamera cam, glm::mat4 model) const {
     auto sunModel = model;
-    ////GLint uTexture = glGetUniformLocation(_program.m_Program.getGLId(), "uTexture");
-    //GLuint texPlanete;
-    //glGenTextures(1, &texPlanete);
-
-    //glBindTexture(GL_TEXTURE_2D, texPlanete);
-    ////glUniform1i(uTexture, 0);
-
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, vTex.textures[0]->getWidth(), vTex.textures[0]->getHeight(), 0, GL_RGBA, GL_FLOAT, vTex.textures[0]->getPixels());
-
 
     glBindVertexArray(_vao);
     glm::mat4 view = cam.getViewMatrix();
@@ -23,17 +12,34 @@ void Planet::draw(glimac::FreeflyCamera cam, glm::mat4 model) const {
     //view = glm::translate(view, glm::vec3(0, 0, -10));
     glm::mat4 ProjMatrix = glm::perspective(glm::radians(70.f), (float)(getWindowWidth()) / getWindowHeight(), 0.1f, 100.f);
 
-    sunModel = glm::translate(sunModel, glm::vec3(0, 0, -10));
-    sunModel = glm::rotate(sunModel, (float) glfwGetTime() * 360 / (vTex.lenghtsOfDays[0]), glm::vec3(0, 1, 0));
+    // sunModel = glm::translate(sunModel, glm::vec3(0, 0, -10));
+    sunModel = glm::rotate(sunModel, (float) (glfwGetTime() * 360. / (vTex.lenghtsOfDays[0])), glm::vec3(0, 1, 0));
     
 
     sunModel = glm::scale(sunModel, _scale);
 
     glm::mat4 MVMatrix = view * sunModel;
     glm::mat4 NormalMatrix = glm::transpose(glm::inverse(MVMatrix));
+
+    glm::vec3 Kd(1., 1., 1.);
+    glm::vec3 Ks(.5, 5., .5);
+    float Shininess = 1.f;
+    glm::vec3 LightPos(0);
+    glm::vec3 LightPos_vs(1);
+    glm::vec3 LightIntensity(1., 1., 1.);
+
+    LightPos_vs = view * glm::vec4(LightPos, 0);
+
+    _program.m_Program.use();
+
     glUniformMatrix4fv(_program.uMVMatrix, 1, GL_FALSE, glm::value_ptr(MVMatrix));
     glUniformMatrix4fv(_program.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix));
     glUniformMatrix4fv(_program.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix));
+    glUniform3fv(_program.uKd, 1, &Kd[0]);
+    glUniform3fv(_program.uKs, 1, &Ks[0]);
+    glUniform1f(_program.uShininess, Shininess);
+    glUniform3fv(_program.uLightPos_vs, 1, &LightPos_vs[0]);
+    glUniform3fv(_program.uLightIntensity, 1, &LightIntensity[0]);
 
     glBindTexture(GL_TEXTURE_2D, vTex.tex[0]);
 
@@ -59,9 +65,18 @@ void Planet::draw(glimac::FreeflyCamera cam, glm::mat4 model) const {
 
         glm::mat4 MVMatrix = view * planetModel;
         glm::mat4 NormalMatrix = glm::transpose(glm::inverse(MVMatrix));
+        LightPos_vs = view * glm::vec4(LightPos, 0);
+
+        _program.m_Program.use();
+
         glUniformMatrix4fv(_program.uMVMatrix, 1, GL_FALSE, glm::value_ptr(MVMatrix));
         glUniformMatrix4fv(_program.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix));
         glUniformMatrix4fv(_program.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix));
+        glUniform3fv(_program.uKd, 1, &Kd[0]);
+        glUniform3fv(_program.uKs, 1, &Ks[0]);
+        glUniform1f(_program.uShininess, Shininess);
+        glUniform3fv(_program.uLightPos_vs, 1, &LightPos_vs[0]);
+        glUniform3fv(_program.uLightIntensity, 1, &LightIntensity[0]);
 
 
         glBindTexture(GL_TEXTURE_2D, vTex.tex[i]);
