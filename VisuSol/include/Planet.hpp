@@ -8,6 +8,7 @@
 #include "glimac/common.hpp"
 #include "glimac/Sphere.hpp"
 #include "TextureSto.hpp"
+#include "Satellite.hpp"
 #include <vector>
 
 class Orbit;
@@ -34,6 +35,13 @@ public:
 
     void draw(glimac::FreeflyCamera cam, glm::mat4 model) const override;
 
+    void drawPlanetes(glimac::FreeflyCamera cam, glm::mat4 model, int nPlanet) const;
+
+    void Planet::drawSattelite(glimac::FreeflyCamera cam, glm::mat4 model, int numPlat, int help) const;
+
+
+
+
 private:
     const glimac::ShapeVertex* _dataPointer;
     GLsizei                    _vertexCount;
@@ -46,5 +54,6 @@ private:
     glm::vec3            _scale;
     std::vector<Orbit>   _orbites;
     TextureSto vTex;
+    Satellite sattelites;
 
 };

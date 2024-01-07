@@ -31,10 +31,6 @@ struct TextureSto
 		textures.emplace_back(glimac::loadImage("./assets/models/textures/saturnmap.jpg"));
 		textures.emplace_back(glimac::loadImage("./assets/models/textures/uranusmap.jpg"));
 		textures.emplace_back(glimac::loadImage("./assets/models/textures/neptunemap.jpg"));
-		for (int i = 0; i < 8; i++) {
-			randomAngle.push_back(glm::sphericalRand(2.f));
-
-		}
 
 		for (const auto& img : textures) {
 			GLuint texPlanete;
