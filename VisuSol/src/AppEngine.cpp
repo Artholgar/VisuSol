@@ -13,7 +13,7 @@ int mouseLeftClick = 1;
 double cursorPosX;
 double cursorPosY;
 
-glimac::TrackBallCamera cam;
+glimac::FreeflyCamera cam;
 
 int getWindowWidth() {
     return window_width;
@@ -23,13 +23,13 @@ int getWindowHeight() {
     return window_height;
 }
 
-glimac::Camera getCam() {
+glimac::FreeflyCamera getCam() {
     return cam;
 }
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    /*if (key == GLFW_KEY_UP) {
+    if (key == GLFW_KEY_UP) {
         if (action == GLFW_PRESS)
             rotateUp = 1.f;
         else if (action == GLFW_RELEASE)
@@ -76,21 +76,21 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
             moveLeft = -0.1f;
         else if (action == GLFW_RELEASE)
             moveLeft = 0.f;
-    }*/
+    }
 }
 
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
-    //if (button == GLFW_MOUSE_BUTTON_LEFT) {
-    //    if (action == GLFW_PRESS) {
-    //        // set cursor position
-    //        glfwGetCursorPos(window, &cursorPosX, &cursorPosY);
-    //        mouseLeftClick = 1;
-    //    }
-    //    else if (action == GLFW_RELEASE) {
-    //        mouseLeftClick = 1;
-    //    }
-    //}
+    if (button == GLFW_MOUSE_BUTTON_LEFT) {
+        if (action == GLFW_PRESS) {
+            // set cursor position
+            glfwGetCursorPos(window, &cursorPosX, &cursorPosY);
+            mouseLeftClick = 1;
+        }
+        else if (action == GLFW_RELEASE) {
+            mouseLeftClick = 1;
+        }
+    }
 }
 
 static void scroll_callback(GLFWwindow* /*window*/, double /*xoffset*/, double /*yoffset*/)
@@ -103,7 +103,7 @@ static void cursor_position_callback(GLFWwindow* window, double xpos, double ypo
 
     // glfwGetCursorPos(window, &posX, &posY);
 
-    /*if (mouseLeftClick && xpos < cursorPosX) {
+    if (mouseLeftClick && xpos < cursorPosX) {
         cam.rotateLeft(0.5f);
     }
     if (mouseLeftClick && cursorPosX < xpos) {
@@ -117,7 +117,7 @@ static void cursor_position_callback(GLFWwindow* window, double xpos, double ypo
     }
 
     cursorPosX = xpos;
-    cursorPosY = ypos;*/
+    cursorPosY = ypos;
 }
 
 static void size_callback(GLFWwindow* window, int width, int height)

@@ -7,6 +7,6 @@
 int getWindowWidth();
 int getWindowHeight();
 
-glimac::Camera getCam();
+glimac::FreeflyCamera getCam();
 
 int initWindow(GLFWwindow** window);

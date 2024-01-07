@@ -35,6 +35,19 @@ struct TextureSto
 			randomAngle.push_back(glm::sphericalRand(2.f));
 
 		}
+
+		for (const auto& img : textures) {
+			GLuint texPlanete;
+			glGenTextures(1, &texPlanete);
+
+			glBindTexture(GL_TEXTURE_2D, texPlanete);
+			//glUniform1i(uTexture, 0);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->getWidth(), img->getHeight(), 0, GL_RGBA, GL_FLOAT, img->getPixels());
+			tex.emplace_back(texPlanete);
+		}
 	}
 
 	void generatePerihelions()
@@ -64,7 +77,7 @@ struct TextureSto
 	}
 	void generateLenghstOfDays()
 	{
-		lenghtsOfDays = { 0, 4222.6,	2802.0,	24.0,	24.7,	9.9,	10.7,	17.2,	16.1 };
+		lenghtsOfDays = { 25.0 , 4222.6,	2802.0,	24.0,	24.7,	9.9,	10.7,	17.2,	16.1 };
 	}
 	void generateObliquitys()
 	{
@@ -74,6 +87,7 @@ struct TextureSto
 	{
 		diameters = { 0, 4879,	12104,	12756,	6792,	142984,	120536,	51118,	49528 };
 	}
+	std::vector<GLuint> tex;
 	std::vector<std::unique_ptr<glimac::Image>> textures;
 	std::vector<std::unique_ptr<glimac::Image>> secondTextures;
 	std::vector<glm::vec3> randomAngle;
