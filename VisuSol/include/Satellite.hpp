@@ -7,7 +7,7 @@
 
 struct Satellite
 {
-	Satellite::Satellite()
+	Satellite()
 	{
 		generateTexture();
 	};
@@ -15,9 +15,9 @@ struct Satellite
 	void generateTexture()
 	{
 		
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/moonmap1k.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/phobosbump.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/deimosbump.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/moonmap1k.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/phobosbump.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/deimosbump.jpg"));
 		for (const auto& img : textures) {
 			GLuint texPlanete;
 			glGenTextures(1, &texPlanete);

@@ -7,7 +7,7 @@
 
 struct TextureSto
 {
-	TextureSto::TextureSto() 
+	TextureSto() 
 	{
 		generateTexture();
 		generatePerihelions();
@@ -22,15 +22,15 @@ struct TextureSto
 	};
 	void generateTexture()
 	{
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/sunmap.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/mercurymap.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/venusmap.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/earthmap1k.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/mars_1k_color.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/jupitermap.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/saturnmap.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/uranusmap.jpg"));
-		textures.emplace_back(glimac::loadImage("./assets/models/textures/neptunemap.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/sunmap.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/mercurymap.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/venusmap.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/earthmap1k.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/mars_1k_color.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/jupitermap.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/saturnmap.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/uranusmap.jpg"));
+		textures.emplace_back(glimac::loadImage("../assets/models/textures/neptunemap.jpg"));
 
 		for (const auto& img : textures) {
 			GLuint texPlanete;

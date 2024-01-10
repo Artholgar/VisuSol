@@ -37,7 +37,7 @@ public:
 
     void drawPlanetes(glimac::FreeflyCamera cam, glm::mat4 model, int nPlanet) const;
 
-    void Planet::drawSattelite(glimac::FreeflyCamera cam, glm::mat4 model, int numPlat, int help) const;
+    void drawSattelite(glimac::FreeflyCamera cam, glm::mat4 model, int numPlat, int help) const;
 
 
 

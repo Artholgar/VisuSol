@@ -10,8 +10,8 @@ struct PlanetProgram {
     //GLint uTexture;
 
     PlanetProgram(const glimac::FilePath& applicationPath) :
-        m_Program(glimac::loadProgram("./VisuSol/shaders/vertex.vs.glsl",
-            "./VisuSol/shaders/fragment.fs.glsl")) {
+        m_Program(glimac::loadProgram("../VisuSol/shaders/vertex.vs.glsl",
+            "../VisuSol/shaders/fragment.fs.glsl")) {
         m_Program.use();
         uMVPMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVPMatrix");
         uMVMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVMatrix");
